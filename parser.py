@@ -1,33 +1,6 @@
 from lexical_analyzer import LexicalAnalyzer
 
 
-file = open('word_lists/verbs.txt', 'r')
-verbs = file.read().splitlines()
-file.close()
-
-file = open('word_lists/adjectives.txt', 'r')
-adjectives = file.read().splitlines()
-file.close()
-
-file = open('word_lists/nouns.txt', 'r')
-nouns = file.read().splitlines()
-file.close()
-
-file = open('word_lists/pronouns.txt', 'r')
-pronouns = file.read().splitlines()
-file.close()
-
-file = open('word_lists/prepositions.txt', 'r')
-prepositions = file.read().split()
-file.close()
-
-file = open('word_lists/articles.txt', 'r')
-articles = file.read().split()
-file.close()
-
-file = open('input.txt', 'r')
-input = file.read().split()
-
 class Parser:
     def __init__(self):
         self.ast = {'VariableDeclaration': []}
