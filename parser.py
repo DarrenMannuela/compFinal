@@ -1,52 +1,58 @@
 from lexical_analyzer import LexicalAnalyzer
 
-file = open('verbs.txt', 'r')
+
+file = open('word_lists/verbs.txt', 'r')
 verbs = file.read().splitlines()
 file.close()
 
-file = open('adjectives.txt', 'r')
+file = open('word_lists/adjectives.txt', 'r')
 adjectives = file.read().splitlines()
 file.close()
 
-file = open('nouns.txt', 'r')
+file = open('word_lists/nouns.txt', 'r')
 nouns = file.read().splitlines()
 file.close()
 
-file = open('pronouns.txt', 'r')
+file = open('word_lists/pronouns.txt', 'r')
 pronouns = file.read().splitlines()
+file.close()
+
+file = open('word_lists/prepositions.txt', 'r')
+prepositions = file.read().split()
+file.close()
+
+file = open('word_lists/articles.txt', 'r')
+articles = file.read().split()
 file.close()
 
 file = open('input.txt', 'r')
 input = file.read().split()
 
-
-file = open('preposition.txt', 'r')
-prepositions = file.read().split()
-file.close()
-
-
-test = LexicalAnalyzer(input, verbs, adjectives, nouns, pronouns, prepositions)
-
-test.analyze_input()
-
-
 class Parser:
-    def __init__(self, tokens):
-        self.tokens = tokens
-        self.structure = []
+    def __init__(self):
+        self.ast = {'VariableDeclaration': []}
 
-    def check_structure(self):
-        for token in self.tokens:
-            self.structure.append(token[0])
+    def get_lexer(self):
+        lexer = LexicalAnalyzer().analyze_input()
+        return lexer
 
-    def print_structure(self):
-        return self.structure
+    def parse(self):
+        lex = self.get_lexer()
+        for x in range(0, len(lex)):
+            token_type = lex[x][0]
+            token_value = lex[x][1]
 
+            if x == 0 and token_type == 'PRONOUN':
+                self.ast['VariableDeclaration'].append({'pronoun': token_value})
+            elif x == 1 and token_type == 'VERB':
+                self.ast['VariableDeclaration'].append({'verb': token_value})
+            elif x == 2 and token_type == 'ARTICLE':
+                self.ast['VariableDeclaration'].append({'article': token_value})
+            elif x == 2 and token_type == 'NOUN':
+                self.ast['VariableDeclaration'].append({'noun': token_value})
+            elif x == 3 and token_type == 'NOUN':
+                self.ast['VariableDeclaration'].append({'noun': token_value})
+        return self.ast
 
-parse = Parser(test.get_tokens())
-
-parse.check_structure()
-
-print(parse.print_structure())
-
-
+parser = Parser()
+print(parser.parse())
