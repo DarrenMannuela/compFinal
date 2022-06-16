@@ -20,6 +20,7 @@ alert
 alight
 allow
 altered
+am
 amuse
 analyze
 announce
@@ -35,6 +36,7 @@ appraise
 appreciate
 approve
 arbitrate
+are
 argue
 arise
 arrange
@@ -393,8 +395,10 @@ hang
 happen
 harass
 harm
+has
 hate
 haunt
+have
 head
 heal
 heap
@@ -454,6 +458,7 @@ inventory
 investigate
 invite
 irritate
+is
 itch
 jail
 jam
